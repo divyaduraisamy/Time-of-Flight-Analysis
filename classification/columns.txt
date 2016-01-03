@@ -1,0 +1,11 @@
+arrDelay
+carrierId
+crsArrTime
+crsDepTime
+dayOfMonth
+dayOfWeek
+destAirport
+destStateId
+month
+origAirport
+origStateId
