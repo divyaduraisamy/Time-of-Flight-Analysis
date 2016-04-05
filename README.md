@@ -1,6 +1,6 @@
 # Time-Of-Flight-Analysis
   This project is for the coursework "IDS 561 - Big Data Analysis"
- ##Motivation 
+ ## Motivation 
   The number of consumer complaints filed with the U.S. Department of Transportation (DOT) has soared by roughly 55 percent from a year ago.Punctuality is one of the key performance indicators in the airline industry and an important service differentiator especially for valuable high-yield customers. In addition , improved on-time performance can help achieve significant high-yield customers. Airlines report delay costs from 0.6 to up to as much as 2.9% of their operating revenues.
   
   There is a huge amount of airline data available at United States Department Of Transportation. The data provides details about the Carrier detail and delay details. This information can be of use to perform analysis and identify the root cause of the delay. Also the result of the analysis can be used to help the travellers to make travel decisions like time of flight etc.Also, Ranking of the airports based on the number of flights arriving/departing provides information about which airport requires more attention. 
