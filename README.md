@@ -24,18 +24,18 @@
 An aggregate query was performed to sort the states based on the average delay in all the airports present in the particular state and are sorted in the descending order.
 
 ```bash
-  Query :   db.flights_original.aggregate([   {"$group" : {"_id": "$destStateId",                      "delay" : {$avg : "$arrDelay"}}}         , { "$sort" : {"delay" : -1} }              ]);
+  Query :   db.flights_original.aggregate([ {"$group" : {"_id": "$destStateId",  "delay" : {$avg : "$arrDelay"}}} , { "$sort" : {"delay" : -1} } ]);
 ```
 ####Day of the year with maximum delay :
 An aggregate query is run over the data to obtain the day of the year with maximum delay and are sorted in descending order. 
 ```bash
-  Query : db.flights_original.aggregate([         {"$group" : {"_id": "$date",                      "delay" : {$avg : "$arrDelay"}}}         , { "$sort" : {"delay" : -1} },{$out:"arrivalcalendar"}]) ;
+  Query : db.flights_original.aggregate([  {"$group" : {"_id": "$date",  "delay" : {$avg : "$arrDelay"}}} , { "$sort" : {"delay" : -1} },{$out:"arrivalcalendar"}]) ;
  ``` 
   
 ###Carrier with the most departure delay :
 An aggregate query which obtains the list of carriers with the most departure delay.
 ```bash
-db.flights_original.aggregate({"$group" : {"_id": "$carrier",  "delay" : {$avg :          "$arrDelay"}}} , { "$sort" : {"delay" : -1} }   ])
+db.flights_original.aggregate({"$group" : {"_id": "$carrier",  "delay" : {$avg : "$arrDelay"}}} , { "$sort" : {"delay" : -1} }])
  ``` 
 ####Week of Day with maximum departure delay:
 Aggregate query is used to obtain the result of the day of week with most departure delay. 
