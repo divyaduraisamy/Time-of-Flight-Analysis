@@ -21,22 +21,27 @@
   Basic Analysis is performed over the data present in the database (MongoDB) using aggregation queries . Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result . Some of the analysis performed were
 
 ####States with maximum average delay:
-       An aggregate query was performed to sort the states based on the average delay in all the airports present in the particular state and are sorted in the descending order.
-  Query :   db.flights_original.aggregate([   {"$group" : {"_id": "$destStateId",                      "delay" : {$avg : "$arrDelay"}}}         , { "$sort" : {"delay" : -1} }              ]);
+An aggregate query was performed to sort the states based on the average delay in all the airports present in the particular state and are sorted in the descending order.
 
+```bash
+  Query :   db.flights_original.aggregate([   {"$group" : {"_id": "$destStateId",                      "delay" : {$avg : "$arrDelay"}}}         , { "$sort" : {"delay" : -1} }              ]);
+```
 ####Day of the year with maximum delay :
-      An aggregate query is run over the data to obtain the day of the year with maximum delay and are sorted in descending order. 
+An aggregate query is run over the data to obtain the day of the year with maximum delay and are sorted in descending order. 
+```bash
   Query : db.flights_original.aggregate([         {"$group" : {"_id": "$date",                      "delay" : {$avg : "$arrDelay"}}}         , { "$sort" : {"delay" : -1} },{$out:"arrivalcalendar"}]) ;
-  
+ ``` 
   
 ###Carrier with the most departure delay :
-             An aggregate query which obtains the list of carriers with the most departure delay.
-    db.flights_original.aggregate({"$group" : {"_id": "$carrier",  "delay" : {$avg :          "$arrDelay"}}} , { "$sort" : {"delay" : -1} }   ])
-
+An aggregate query which obtains the list of carriers with the most departure delay.
+```bash
+db.flights_original.aggregate({"$group" : {"_id": "$carrier",  "delay" : {$avg :          "$arrDelay"}}} , { "$sort" : {"delay" : -1} }   ])
+ ``` 
 ####Week of Day with maximum departure delay:
-              Aggregate query is used to obtain the result of the day of week with most departure delay. 
+Aggregate query is used to obtain the result of the day of week with most departure delay. 
+```bash
   db.flights_original.aggregate([{"$group" : {"_id": {"w" : {"$dayOfWeek" : "$date"}, "h" : {"$hour" : "$date"}}, "delay" : {agg : "$"+aggregateValue}}} , {"$sort": {"delay" : -1}}])
-
+  ``` 
 ###PAGE RANK ANALYSIS OF AIRPORTS:
   A graph model is constructed based on the flights arriving to and  departing from airports. The nodes are the Airports , Edges are the flights arriving/departing.The graph model also contains details about the probability that the flight travels from one Node(Airport) to another Node(Airport). Used Mongo DB distributed map reduce framework  to perform page rank analysis on an EC2 cluster.The airports with the most in-links are the influential airports and ranked accordingly using Page Rank algorithm. Since Map Reduce was used , the computation was faster.The formula used for page rank analysis 
   is , 
